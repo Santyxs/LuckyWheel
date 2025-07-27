@@ -9,7 +9,6 @@ html, body {
   color: white;
 }
 
-/* Ocultar contornos al enfocar */
 input:focus,
 select:focus,
 textarea:focus,
@@ -48,34 +47,7 @@ button:focus {
   align-items: center;
 }
 
-/* Estilo de la ruleta */
-.wheel {
-  width: 300px;
-  height: 300px;
-  border-radius: 50%;
-  background: radial-gradient(circle, #ffcc00, #b8860b);
-  border: 8px solid #ffd700;  
-  box-shadow: 0 0 15px rgba(255, 215, 0, 0.8); 
-  position: relative;
-  transition: transform 4s cubic-bezier(0.17, 0.67, 0.83, 0.67); 
-}
-
-/* Decoraciones de la ruleta */
-.wheel::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 40px;
-  height: 40px;
-  background: radial-gradient(circle, #ffcc00, #b8860b);
-  border: 4px solid #ffd700;
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  box-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
-}
-
-/* Botón de la ruleta */
+/* Botón ruleta */
 .canvas-button {
   background: transparent;
   border: none;
@@ -83,11 +55,12 @@ button:focus {
   transition: transform 0.3s ease-in-out;
 }
 
+/* Contenedor de nombres */
 .names-container {
   position: absolute;
-  top: 10px; 
+  top: 10px;
   left: 10px;
-  width: 250px; 
+  width: 250px;
   border-radius: 10px;
   backdrop-filter: blur(5px);
   padding: 10px;
@@ -96,7 +69,7 @@ button:focus {
   align-items: flex-start;
 }
 
-/* Ajustar el botón "+" con animaciones */
+/* Botón + */
 .collapsible-button {
   font-size: 50px;
   font-weight: bold;
@@ -108,22 +81,19 @@ button:focus {
   transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease;
 }
 
-/* Efecto al pasar el cursor */
 .collapsible-button:hover {
-  color: #ffd700; /* Dorado brillante */
+  color: #ffd700;
   text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
   transform: scale(1.1);
 }
 
-/* Efecto al hacer clic */
 .collapsible-button:active {
   transform: rotate(90deg) scale(0.9);
 }
 
-
-/* Estilo del contenido desplegable */
+/* Contenido desplegable */
 .content {
-  display: none; 
+  display: none;
   width: 100%;
   margin-top: 10px;
 }
@@ -133,11 +103,10 @@ button:focus {
   list-style-type: none;
   padding: 0;
   margin: 0;
-  max-height: 200px;
-  overflow-y: auto; 
+  max-height: 400px;
+  overflow-y: auto;
 }
 
-/* Estilo de cada nombre */
 .todo-list li {
   display: flex;
   justify-content: space-between;
@@ -147,7 +116,7 @@ button:focus {
   border-radius: 5px;
 }
 
-/* Estilo del botón eliminar */
+/* Botón eliminar */
 .delete-button {
   background: transparent;
   border: none;
@@ -164,7 +133,6 @@ form {
   gap: 10px;
 }
 
-/* Input de texto */
 input[type="text"] {
   flex-grow: 1;
   padding: 10px;
@@ -179,7 +147,6 @@ input[type="text"]:focus {
   border-color: #ffcc00;
 }
 
-/* Estado vacío */
 .empty-state {
   display: none;
   flex-direction: column;
@@ -193,11 +160,48 @@ input[type="text"]:focus {
   margin-bottom: 20px;
 }
 
-/* Lista de nombres */
-.todo-list {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-  max-height: 400px; 
-  overflow-y: auto; 
+/* RESPONSIVE para móviles */
+@media (max-width: 768px) {
+  .container {
+    width: 90%;
+    padding-top: 10px;
+  }
+
+  .canvas-button canvas {
+    width: 100%;
+    height: auto;
+    max-width: 300px;
+  }
+
+  .arrow-container img {
+    width: 40px;
+    height: auto;
+  }
+
+  .names-container {
+    width: 90%;
+    left: 5%;
+    top: auto;
+    bottom: 20px;
+    position: fixed;
+    background: rgba(0, 0, 0, 0.6);
+  }
+
+  .collapsible-button {
+    font-size: 36px;
+  }
+
+  input[type="text"] {
+    font-size: 16px;
+    padding: 8px;
+  }
+
+  .todo-list li {
+    font-size: 14px;
+    padding: 6px 8px;
+  }
+
+  .delete-button {
+    font-size: 16px;
+  }
 }
