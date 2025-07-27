@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
             namesArray = [];
 
             theWheel.segments.forEach((segment, index) => {
-                if (index > 0 && segment.text) { 
+                if (index > 0 && segment.text) {
                     namesArray.push(segment.text);
                     addNameToList(segment.text, false);
                 }

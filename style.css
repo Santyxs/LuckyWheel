@@ -1,207 +1,212 @@
-/* General */
-html, body {
-  height: 100%;
+/* Reset */
+* {
   margin: 0;
   padding: 0;
-  border: 0;
-  background: linear-gradient(to bottom, #1e1e1e, #000);
+  box-sizing: border-box;
+}
+
+body {
   font-family: 'Poppins', sans-serif;
+  background: linear-gradient(to right, #1e1e1e, #000);
   color: white;
-}
-
-input:focus,
-select:focus,
-textarea:focus,
-button:focus {
-  outline: none;
-}
-
-/* Contenedor principal */
-.container {
-  width: 50%;
-  margin: 0 auto;
+  min-height: 100vh;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  text-align: center;
-  padding-top: 20px;
-}
-
-/* Flecha */
-.arrow-container {
-  position: absolute;
-  top: 10px;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-}
-
-/* Ruleta */
-.wheel-container {
-  width: 100%;
-  margin-top: 35px;
+  padding: 2rem;
   position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  overflow: hidden;
 }
 
-/* Botón ruleta */
-.canvas-button {
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  transition: transform 0.3s ease-in-out;
-}
-
-/* Contenedor de nombres */
-.names-container {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  width: 250px;
-  border-radius: 10px;
-  backdrop-filter: blur(5px);
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-/* Botón + */
-.collapsible-button {
-  font-size: 50px;
-  font-weight: bold;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  color: white;
-  align-self: flex-start;
-  transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease;
-}
-
-.collapsible-button:hover {
-  color: #ffd700;
-  text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
-  transform: scale(1.1);
-}
-
-.collapsible-button:active {
-  transform: rotate(90deg) scale(0.9);
-}
-
-/* Contenido desplegable */
-.content {
-  display: none;
-  width: 100%;
-  margin-top: 10px;
-}
-
-/* Lista de nombres */
-.todo-list {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-  max-height: 400px;
-  overflow-y: auto;
-}
-
-.todo-list li {
-  display: flex;
-  justify-content: space-between;
-  background: rgba(255, 255, 255, 0.2);
-  padding: 8px 10px;
-  margin: 5px 0;
-  border-radius: 5px;
-}
-
-/* Botón eliminar */
-.delete-button {
-  background: transparent;
-  border: none;
-  color: red;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-/* Formulario */
-form {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  gap: 10px;
-}
-
-input[type="text"] {
-  flex-grow: 1;
-  padding: 10px;
-  border-radius: 8px;
-  border: 2px solid #444;
-  background: rgba(255, 255, 255, 0.1);
-  color: white;
-  transition: border 0.3s ease-in-out;
-}
-
-input[type="text"]:focus {
-  border-color: #ffcc00;
-}
-
-.empty-state {
-  display: none;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  opacity: 0.7;
-}
-
-.checklist-icon {
-  margin-bottom: 20px;
-}
-
-/* RESPONSIVE para móviles */
+/* 📱 Responsive styles */
 @media (max-width: 768px) {
-  .container {
-    width: 90%;
-    padding-top: 10px;
+  body {
+    flex-direction: column;
+    padding: 1rem 1.5rem;
+    align-items: center;
   }
 
-  .canvas-button canvas {
+  /* Ruleta arriba */
+  .container {
+    order: 1;
     width: 100%;
-    height: auto;
-    max-width: 300px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin-top: 0;
+    position: relative; /* Para que la flecha esté posicionada respecto a este contenedor */
+  }
+
+  /* Flecha centrada arriba */
+  .arrow-container {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    z-index: 20;
   }
 
   .arrow-container img {
-    width: 40px;
+    width: 100%;
     height: auto;
   }
 
+  /* Lista abajo, posición estática */
   .names-container {
-    width: 90%;
-    left: 5%;
-    top: auto;
-    bottom: 20px;
-    position: fixed;
-    background: rgba(0, 0, 0, 0.6);
+    order: 2;
+    position: static !important; 
+    width: 100%;
+    max-width: 100%;
+    max-height: 40vh;
+    overflow-y: auto;
+    margin-top: 1.5rem;
+    background: rgba(255 255 255 / 0.05);
+    border-radius: 12px;
+    padding: 0.75rem 1rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    z-index: auto; 
   }
 
-  .collapsible-button {
-    font-size: 36px;
+  canvas {
+    width: 100%;
+    height: auto;
+    max-width: 90vw;
+    max-height: 90vw;
+    display: block;
+    margin: 0 auto;
   }
 
-  input[type="text"] {
-    font-size: 16px;
-    padding: 8px;
+  /* Quitar hover en boton canvas */
+  .canvas-button:hover {
+    transform: none !important;
   }
+}
 
-  .todo-list li {
-    font-size: 14px;
-    padding: 6px 8px;
-  }
+/* 📦 Ruleta centrada */
+.container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-  .delete-button {
-    font-size: 16px;
-  }
+/* 🎯 Flecha arriba del canvas */
+.arrow-container {
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+}
+
+.arrow-container img {
+  width: 60px;
+}
+
+/* 🎡 Canvas */
+.canvas-button {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.canvas-button:hover {
+  transform: scale(1.05);
+}
+
+canvas {
+  border-radius: 50%;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+/* 📋 Caja de nombres en esquina superior izquierda */
+.names-container {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 280px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 1rem;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* ➕ Botón de añadir nombre */
+.collapsible-button {
+  width: 100%;
+  background: linear-gradient(to right, #0072ff, #00c6ff);
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  padding: 0.5rem;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.collapsible-button:hover {
+  background: linear-gradient(to right, #005bea, #00c6ff);
+}
+
+/* 📝 Formulario */
+.content form {
+  width: 100%;
+}
+
+input.js-name-input {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  outline: none;
+}
+
+/* Lista de nombres */
+.names-list {
+  list-style: none;
+  padding-left: 0;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+/* Cada nombre de la lista */
+.names-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0.75rem;
+  margin-bottom: 0.3rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: background 0.25s ease;
+  cursor: default;
+}
+
+/* Efecto hover al pasar sobre el nombre */
+.names-list li:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Botón X */
+.names-list li button {
+  background: transparent;
+  border: none;
+  color: #ff5c5c;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+/* Efecto hover sobre la X */
+.names-list li button:hover {
+  color: #ff2c2c;
+  transform: scale(1.2);
 }
