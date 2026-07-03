@@ -1,52 +1,57 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="no-js">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Ruleta de la suerte</title>
-  <meta property="og:title" content="Lucky Wheel" />
-  <meta property="og:description" content="Juega a la Ruleta de la suerte online" />
-  <meta property="og:image" content="./assets/logo.png" />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://lucky-wheel2.vercel.app" />
-
-  <!-- Íconos -->
-  <link rel="icon" href="./assets/logo.png" type="image/png" />
-  <link rel="apple-touch-icon" href="./assets/logo.png" />
-
-  <!-- Fuente y estilos -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
-
-  <!-- Scripts -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js" defer></script>
-  <script src="js/config.js" defer></script>
-  <script src="js/script.js" defer></script>
-  <script src="js/list-names.js" defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Ruleta de la suerte</title>
+    <meta name="description" content="Ruleta de la suerte interactiva: añade nombres y gira para elegir al azar.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css" type="text/css">
+    <script type="text/javascript" src="app.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
 </head>
 
 <body>
-  <div class="container">
-    <div class="arrow-container">
-      <img src="./assets/arrow.png" alt="Flecha" />
-    </div>
-    <div class="wheel-container">
-      <button onClick="startSpin();" type="button" class="canvas-button">
-        <canvas id="canvas" width="800" height="800"></canvas>
-      </button>
-    </div>
-  </div>
+    <div class="bg-glow bg-glow--one"></div>
+    <div class="bg-glow bg-glow--two"></div>
 
-  <div class="names-container">
-    <button type="button" class="collapsible-button">👤+</button>
-    <div class="content" style="display:none">
-      <form class="js-form">
-        <input type="text" class="js-name-input" placeholder="Introduce un nombre" />
-      </form>
-      <ul class="names-list js-name-list"></ul>
-    </div>
-  </div>
+    <header class="page-header">
+        <h1><span class="page-header__icon">🎡</span> Ruleta de la suerte</h1>
+        <p class="page-header__subtitle">Añade nombres y gira para decidir al azar</p>
+    </header>
+
+    <main class="container">
+        <div class="wheel-container">
+            <div class="wheel-glow"></div>
+            <div class="arrow-container">
+                <img src="./assets/arrow.png" alt="Puntero de la ruleta">
+            </div>
+            <div class="the_wheel">
+                <button onClick="startSpin();" type="button" class="canvas-button" aria-label="Girar la ruleta">
+                    <canvas id="canvas" width="800" height="800"></canvas>
+                </button>
+            </div>
+        </div>
+        <p class="spin-hint">Pulsa la ruleta para girar</p>
+    </main>
+
+    <aside class="names-container">
+        <button type="button" class="collapsible-button" aria-expanded="false">
+            <span class="collapsible-button__icon">👤</span>
+            <span class="collapsible-button__label">Participantes</span>
+            <span class="collapsible-button__chevron">＋</span>
+        </button>
+
+        <div class="content">
+            <form class="js-form">
+                <input autofocus type="text" class="js-name-input" placeholder="Introduce un nombre" autocomplete="off">
+                <button type="submit" class="add-button" aria-label="Añadir nombre">＋</button>
+            </form>
+            <ul class="todo-list js-name-list"></ul>
+        </div>
+    </aside>
 </body>
-
 </html>
